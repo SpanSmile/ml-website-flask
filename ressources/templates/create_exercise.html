@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    Create Exercise Page
+{% endblock %}
+{% block content %}
+<div style="margin-top:20px; margin-left:20px; margin-right:20px; justify-content: space-between;">
+    <form method="POST" class="form-register" style="color:white">
+        {{ form.hidden_tag() }}
+        <h1 class="h3 mb-3 font-weight-normal">
+            Create an Exercise
+        </h1>
+
+        {{ form.exercise_name.label }}
+        {{ form.exercise_name(class="form-control", placeholder="Exercise Name") }}
+
+        {{ form.subject.label }}
+        {{ form.subject(class="form-control", placeholder="Subject") }}
+
+        {{ form.description.label }}
+        {{ form.description(class="form-control", placeholder="Description") }}
+
+        {{ form.content.label }}
+        {{ form.content(class="form-control", placeholder="Content", rows="18") }}
+
+        <br>
+        <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal" onclick="location.href='{{ url_for('exercise_page') }}'">
+            Cancel
+        </button>
+        {{ form.create(class="btn btn-lg btn-primary") }}
+    </form>
+</div>
+{% endblock %}

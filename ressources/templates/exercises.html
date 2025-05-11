@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+    Exercise Page
+{% endblock %}
+{% block content %}
+    <div style="margin-top:20px; margin-left:20px; margin-right:20px; display: flex; justify-content: space-between;">
+        <h2>Exercises</h2>
+        {% if current_user.authority in [0, 1] %}
+            <button class="btn btn-primary" data-toggle="modal" data-target="#CreateExercise">
+                <i class="fa fa-plus"></i>
+            </button>
+        {% endif %}
+    </div>
+    <div class="row" style="margin-top:20px; margin-left:20px; margin-right:20px">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                {% include 'includes/exercises_modals.html' %}
+                    <tr>
+                        <td class="clickable-row" data-href="{{ url_for('view_exercise_page', id=exercise.id) }}">{{ exercise.name }}</td>
+                        <td class="clickable-row" data-href="{{ url_for('view_exercise_page', id=exercise.id) }}">{{ exercise.subject }}</td>
+                        <td class="clickable-row" data-href="{{ url_for('view_exercise_page', id=exercise.id) }}">{{ authors[exercise.id] }}</td>
+                        <td>
+                            <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ exercise.id }}">
+                                <i class="fa fa-info-circle"></i>
+                            </button>
+                            {% if current_user.authority in [0, 1] %}
+                                <button class="btn btn-outline btn-light" data-toggle="modal" data-target="#Modal-Edit-{{ exercise.id }}">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline btn-danger" data-toggle="modal" data-target="#Modal-Delete-{{ exercise.id }}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="pagination-container">
+            {{ pagination.links }}
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.clickable-row');
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    window.location.href = this.dataset.href;
+                });
+                row.style.cursor = 'pointer';
+            });
+        });
+    </script>
+{% endblock %}

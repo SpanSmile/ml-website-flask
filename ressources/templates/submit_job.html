@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Submit Job
+{% endblock %}
+
+{% block content %}
+        <div style="margin-top:20px; margin-left:20px; margin-right:20px; justify-content: space-between;">
+            <form method="POST" class="form-signin" style="color:white">
+                {{ form.hidden_tag() }}
+                <h1 class="h3 mb-3 font-weight-normal">Submit a Kubernetes Job</h1>
+            
+                {{ form.name.label }}
+                {{ form.name(class="form-control", placeholder="Job Name") }}
+            
+                {{ form.folder_name.label }}
+                {{ form.folder_name(class="form-control", placeholder="Folder Name") }}
+            
+                {{ form.gpu_memory.label }}
+                {{ form.gpu_memory(class="form-control", placeholder="GPU Memory in GB") }}
+            
+                {{ form.image_url.label }}
+                {{ form.image_url(class="form-control", placeholder="Image URL") }}
+            
+                <br>
+                {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+            </form>
+        </div>
+{% endblock %}
+

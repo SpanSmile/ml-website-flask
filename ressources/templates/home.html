@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+    <section class="tutorial-section">
+        <div class="container">
+            <h2>How to Create Libraries with <code>--break-system-packages</code> Flag</h2>
+            <p>
+                The <code>--break-system-packages</code> flag is used in package managers to allow installation
+                of packages that break system constraints. Here's how you can use it effectively:
+            </p>
+            <ol>
+                <li>Understand the purpose of <code>--break-system-packages</code> in your package manager.</li>
+                <li>Ensure that you have the necessary permissions or administrative access to modify system
+                    packages.</li>
+                <li>Open your terminal or command prompt.</li>
+                <li>Use the package manager's install command, followed by the <code>--break-system-packages</code>
+                    flag.</li>
+                <li>For example, in Linux with apt:</li>
+            </ol>
+            <pre><code>
+                sudo apt install <package-name> --break-system-packages
+            </code></pre>
+            <p>
+                This command will force the installation of the package <code>&lt;package-name&gt;</code> even if
+                it conflicts with existing system packages.
+            </p>
+            <p>
+                Make sure to review any warnings or implications of using this flag, as it can potentially
+                compromise system stability.
+            </p>
+        </div>
+    </section>
+        {% else %}
+                <!-- Hero Section -->
+                <section id="hero" class="hero" style = "margin-top: 50px;">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+                                <h1>Welcome to AI Pipeline</h1>
+                                <p class="lead" style = "margin-top: 50px; padding-bottom: 30px;">Designed to make the AI student experience simpler and user-friendly.</p>
+                                <p>You can have access to our tutorials and courses by clicking on the links below.</p>
+                                <div class="row">
+                                    <div class="col-md-6" style = "margin-top: 50px; padding-bottom: 30px;">
+                                        <a href="{{ url_for('login_page') }}" class="btn btn-primary btn-lg btn-block mb-3">Explore Tutorials</a>
+                                    </div>
+                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section id="features" class="features" style = "margin-top: 600px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="feature-item">
+                                    <i class="fas fa-book fa-3x mb-4"></i>
+                                    <h3>Tutorials</h3>
+                                    <p>Access a wide range of AI tutorials and resources.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="feature-item">
+                                    <i class="fas fa-laptop-code fa-3x mb-4"></i>
+                                    <h3>Coding Environment</h3>
+                                    <p>Practice coding in a dedicated AI-powered environment.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="feature-item">
+                                    <i class="fas fa-users fa-3x mb-4"></i>
+                                    <h3>Community</h3>
+                                    <p>Join a vibrant community of AI enthusiasts and learners.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        {% endif %}
+{% endblock %}

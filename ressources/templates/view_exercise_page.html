@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    View Exercise: {{ exercise.name }}
+{% endblock %}
+{% block content %}
+<div style="margin-top:20px; margin-left:20px; margin-right:20px; justify-content: space-between;">
+    <h1 class="h3 mb-3 font-weight-normal">
+        View Exercise: {{ exercise.name }}
+    </h1>
+    
+    <p>Subject: {{ exercise.subject }}</p>
+    <p>Description: {{ exercise.description }}</p>
+    <p>Content: {{ exercise.content }}</p>
+    <p>Author: {{ author }}</p>
+    
+    <!-- Add more details as needed -->
+</div>
+{% endblock %}

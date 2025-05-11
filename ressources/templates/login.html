@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title%}
+    Login Page
+{% endblock %}
+{% block content%}
+<br>
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-signin" style="color:white">
+            {{ form.hidden_tag() }}
+            <img class="mb-4" src="https://www.hv.se/contentassets/4552afcbcf1743cfa20e330297a82d41/hogskolan_vast_logotyp_bla2.png" width="250" height="100" alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Login
+            </h1>
+            <br>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="User Name") }}
+
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Password") }}
+
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+</body> 
+{% endblock %}
